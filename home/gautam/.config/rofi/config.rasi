@@ -1,0 +1,5 @@
+configuration {
+	theme: "/usr/share/rofi/themes/gruvbox-dark-hard.rasi";
+    lines: 10;
+    width: 30;
+}
