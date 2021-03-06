@@ -152,7 +152,7 @@ format = <label>
 format-warn = <label-warn>
 
 label = TEMP %temperature-c%
-label-warn = TEMP WARN %temperature-c%
+label-warn = TEMP %temperature-c%
 
 [settings]
 screenchange-reload = true
