@@ -10,10 +10,13 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
+
 alias cp="cp -i"
 alias df='df -h'
 alias free='free -m'
-alias vim=nvim
+alias vim='nvim'
 alias vpn="sudo protonvpn"
 alias editvim="vim ~/.config/nvim/init.vim"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
