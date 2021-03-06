@@ -69,4 +69,4 @@ class empty(Command):
     """
 
     def execute(self):
-        self.fm.run("rm -rf /home/gautam/.Trash/{*,.[^.]*}")
+        self.fm.run("gio trash --empty")
