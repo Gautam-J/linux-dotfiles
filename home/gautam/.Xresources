@@ -29,6 +29,10 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 URxvt.keysym.Control-Meta-c: builtin-string:
 URxvt.keysym.Control-Meta-v: builtin-string:
 
+URxvt.colorIT: #87af5f
+URxvt.colorBD: #d7d7d7
+URxvt.colorUL: #87afd7
+
 ! Base16 Darktooth (Modified)
 ! Scheme: Jason Milkins (https://github.com/jasonm23)
 
