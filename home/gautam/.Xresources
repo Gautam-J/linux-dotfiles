@@ -15,6 +15,7 @@ URxvt.letterSpace: -1
 URxvt.saveLines: 500
 
 URxvt.tranparent: true
+URxvt.internalBorder: 10
 
 ! Disable ISO 14755 unicode input so we can use Ctrl-Shift bindings
 URxvt.iso14755: false
