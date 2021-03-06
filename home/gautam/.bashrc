@@ -24,6 +24,8 @@ alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 export TF_FORCE_GPU_ALLOW_GROWTH=true
 export TESSDATA_PREFIX='/home/gautam/Coding/Tesseract'
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export VISUAL=nvim
+export EDITOR=nvim
 
 export PATH="$PATH:~/Coding/flutter/bin"
 export PATH=$PATH:/home/gautam/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin
