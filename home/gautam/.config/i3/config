@@ -265,6 +265,9 @@ exec --no-startup-id nm-applet
 # unclutter to hide mouse cursor
 exec_always --no-startup-id unclutter -idle 1 &
 
+# night light
+exec --no-startup-id redshift
+
 # set as floating window by default
 for_window [class="Matplotlib" instance="matplotlib"] floating enable
 for_window [class="qView" instance="qview"] floating enable
