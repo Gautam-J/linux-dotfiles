@@ -45,7 +45,6 @@ modules-right = xbacklight pulseaudio cpu memory network battery temperature
 tray-position = right
 
 [module/i3]
-; TODO: Add icons
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
@@ -135,10 +134,10 @@ adapter = AC0
 time-format = %H:%M
 
 format-charging = <label-charging>
-label-charging = CH %percentage%%
+label-charging = CH %percentage%% %time%
 
 format-discharging = <label-discharging>
-label-discharging = DC %percentage%%
+label-discharging = DC %percentage%% %time%
 
 format-full = <label-full>
 label-full = FULL %percentage%%
