@@ -26,6 +26,23 @@ export TESSDATA_PREFIX='/home/gautam/Coding/Tesseract'
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export VISUAL=nvim
 export EDITOR=nvim
+export TERM=xterm
 
 export PATH="$PATH:~/Coding/flutter/bin"
-export PATH=$PATH:/home/gautam/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin
+export PATH="$PATH:/home/gautam/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/gautam/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/gautam/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/gautam/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/gautam/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
