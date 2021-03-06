@@ -49,6 +49,11 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# screenshot fullscreen
+bindsym --release Print exec spectacle -f
+# screenshot region
+bindsym --release Shift+Print exec spectacle -r -g
+
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
