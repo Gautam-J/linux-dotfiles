@@ -1,0 +1,13 @@
+[user]
+	name = Gautam J
+	email = gautam.jayapal@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[credential]
+	helper = store
+[pull]
+	rebase = false
+[alias]
+	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit
