@@ -1,0 +1,17 @@
+{
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.snippets.enable": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "python",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "json",
+    "c",
+    "cpp",
+    "dart"
+  ]
+}
