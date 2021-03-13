@@ -17,6 +17,7 @@ alias ip='ip --color=auto'
 # Useful aliases
 alias cp="cp -i"
 alias df='df -h'
+alias r='ranger'
 alias free='free -m'
 alias vim='nvim'
 alias vpn="sudo protonvpn"
