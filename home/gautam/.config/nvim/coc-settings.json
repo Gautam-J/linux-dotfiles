@@ -1,4 +1,5 @@
 {
+  "python.formatting.provider": "black",
   "coc.preferences.colorSupport": true,
   "coc.preferences.snippets.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [
