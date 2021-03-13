@@ -53,7 +53,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # screenshot fullscreen
-bindsym --release Print exec --no-startup-id maim "/home/$USER/Pictures/ScreenShot/$(date +'%Y')/$(date +'%Y%m%d_%H%M%S').png" && notify-send "ScreenShot Saved!" -u low
+bindsym --release Print exec --no-startup-id maim "/home/$USER/Pictures/ScreenShot/$(date +'%Y')/$(date +'%Y%m%d_%H%M%S').png" -u && notify-send "ScreenShot Saved!" -u low
 # screenshot region
 bindsym --release Shift+Print exec --no-startup-id maim "/home/$USER/Pictures/ScreenShot/$(date +'%Y')/$(date +'%Y%m%d_%H%M%S').png" -u -D --select && notify-send "ScreenShot Saved!" -u low
 
