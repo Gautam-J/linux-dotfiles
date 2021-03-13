@@ -276,6 +276,7 @@ for_window [class="Matplotlib" instance="matplotlib"] floating enable
 for_window [class="qView" instance="qview"] floating enable
 for_window [class="mpv" instance="gl"] floating enable
 for_window [class="feh" instance="feh"] floating enable
+for_window [class="Thunar" instance="Thunar"] floating enable
 
 # gaps between windows
 gaps inner 5
