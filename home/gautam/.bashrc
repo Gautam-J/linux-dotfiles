@@ -17,12 +17,14 @@ alias ip='ip --color=auto'
 # Useful aliases
 alias cp="cp -i"
 alias df='df -h'
+alias du="du -h"
 alias r='ranger'
 alias free='free -m'
 alias vim='nvim'
 alias vpn="sudo protonvpn"
 alias editvim="vim ~/.config/nvim/init.vim"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
+alias listenvs="conda info --envs"
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
