@@ -111,7 +111,7 @@ label-disconnected = NO WIFI
 type = internal/date
 interval = 1
 
-date = %Y-%m-%d%
+date = %Y-%m-%d %a%
 time = %H:%M
 
 format = <label>
