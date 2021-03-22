@@ -1,0 +1,27 @@
+{
+  "window.zoomLevel": 1,
+  "workbench.startupEditor": "none",
+  "workbench.settings.editor": "json",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "editor.fontSize": 16,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.showSlider": "always",
+  "editor.rulers": [80],
+  "editor.tabSize": 4,
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "smooth",
+  "editor.insertSpaces": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "keyboard.dispatch": "keyCode",
+  "autoDocstring.docstringFormat": "google",
+  "autoDocstring.startOnNewLine": true
+}
