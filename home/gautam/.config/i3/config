@@ -162,7 +162,7 @@ for_window [class="discord"] move to workspace $ws9
 for_window [class="Whatsapp-for-linux"] move to workspace $ws8
 
 # set lockscreen wallpaper
-set $Locker i3lock -i ~/Pictures/Wallpapers/house_stark.png -f
+set $Locker i3lock -i ~/Pictures/Wallpapers/mrRobot.png -f
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
