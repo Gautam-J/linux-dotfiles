@@ -30,5 +30,6 @@
   "keyboard.dispatch": "keyCode",
   "autoDocstring.docstringFormat": "google",
   "autoDocstring.startOnNewLine": true,
-  "python.showStartPage": false
+  "python.showStartPage": false,
+  "explorer.confirmDelete": false
 }
