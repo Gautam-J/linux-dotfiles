@@ -31,5 +31,6 @@
   "autoDocstring.docstringFormat": "google",
   "autoDocstring.startOnNewLine": true,
   "python.showStartPage": false,
-  "explorer.confirmDelete": false
+  "explorer.confirmDelete": false,
+  "explorer.compactFolders": false
 }
