@@ -12,6 +12,7 @@
     }
   ],
   "editor.fontSize": 16,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.minimap.showSlider": "always",
@@ -20,7 +21,6 @@
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "smooth",
   "editor.insertSpaces": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
@@ -31,6 +31,10 @@
   "autoDocstring.docstringFormat": "google",
   "autoDocstring.startOnNewLine": true,
   "python.showStartPage": false,
+  "python.defaultInterpreterPath": "/home/gautam/miniconda3/bin/python",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--ignore=E501"],
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false
 }

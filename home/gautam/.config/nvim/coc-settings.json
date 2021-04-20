@@ -1,21 +1,12 @@
 {
-  "python.formatting.provider": "black",
   "coc.preferences.colorSupport": true,
   "coc.preferences.snippets.enable": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdown",
-    "python",
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "json",
-    "c",
-    "cpp",
-    "dart"
-  ],
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
-  }
+  },
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.pythonPath": "/home/gautam/miniconda3/bin/python",
+  "python.linting.flake8Args": ["--ignore=E501"]
 }
