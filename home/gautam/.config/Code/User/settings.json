@@ -21,6 +21,29 @@
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "smooth",
   "editor.insertSpaces": true,
+  "editor.tokenColorCustomizations": {
+    "comments": "#777777",
+    "textMateRules": [
+      {
+        "scope": "string.quoted.docstring.multi.python",
+        "settings": {
+          "foreground": "#6272a4"
+        }
+      },
+      {
+        "scope": "string.quoted.docstring.multi.python punctuation.definition.string.end.python",
+        "settings": {
+          "foreground": "#6272a4"
+        }
+      },
+      {
+        "scope": "string.quoted.docstring.multi.python punctuation.definition.string.end.python",
+        "settings": {
+          "foreground": "#6272a4"
+        }
+      }
+    ]
+  },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
@@ -31,10 +54,13 @@
   "autoDocstring.docstringFormat": "google",
   "autoDocstring.startOnNewLine": true,
   "python.showStartPage": false,
-  "python.defaultInterpreterPath": "/home/gautam/miniconda3/bin/python",
+  "python.defaultInterpreterPath": "~/miniconda3/bin/python",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
   "python.linting.flake8Args": ["--ignore=E501"],
   "explorer.confirmDelete": false,
-  "explorer.compactFolders": false
+  "explorer.compactFolders": false,
+  "jupyter.alwaysTrustNotebooks": true,
+  "markdown.extension.toc.updateOnSave": false
 }
