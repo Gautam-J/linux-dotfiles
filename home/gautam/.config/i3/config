@@ -160,6 +160,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 for_window [class="Spotify"] move to workspace $ws10
 for_window [class="discord"] move to workspace $ws9
 for_window [class="Whatsapp-for-linux"] move to workspace $ws8
+for_window [class="Postman"] move to workspace $ws7
 
 # set lockscreen wallpaper
 set $Locker i3lock -i ~/Pictures/Wallpapers/mrRobot.png -f
