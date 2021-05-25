@@ -41,6 +41,7 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export VISUAL=nvim
 export EDITOR=nvim
 export TERM=xterm
+export FLASK_DEBUG=1
 
 # Add to path
 export PATH="$PATH:~/Coding/flutter/bin"
