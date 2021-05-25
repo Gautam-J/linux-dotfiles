@@ -22,8 +22,8 @@ Plug 'romainl/vim-cool'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'yggdroot/indentLine'
-Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'prettier/vim-prettier', {'do': 'npm install'}
 
 " Initialize plugin system
 call plug#end()
