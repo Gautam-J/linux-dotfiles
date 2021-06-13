@@ -1,5 +1,4 @@
 {
-  "window.zoomLevel": 1,
   "workbench.startupEditor": "none",
   "workbench.settings.editor": "json",
   "workbench.editor.highlightModifiedTabs": true,
@@ -20,7 +19,10 @@
   "editor.tabSize": 4,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "smooth",
-  "editor.insertSpaces": true,
+  "editor.insertSpaces": false,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
   "editor.tokenColorCustomizations": {
     "comments": "#777777",
     "textMateRules": [
@@ -51,8 +53,8 @@
     "javascript": "javascriptreact"
   },
   "keyboard.dispatch": "keyCode",
-  "autoDocstring.docstringFormat": "google",
-  "autoDocstring.startOnNewLine": true,
+  "autoDocstring.docstringFormat": "numpy",
+  "autoDocstring.startOnNewLine": false,
   "python.showStartPage": false,
   "python.defaultInterpreterPath": "~/miniconda3/bin/python",
   "python.linting.enabled": true,
@@ -62,5 +64,6 @@
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "jupyter.alwaysTrustNotebooks": true,
-  "markdown.extension.toc.updateOnSave": false
+  "markdown.extension.toc.updateOnSave": false,
+  "window.zoomLevel": 1
 }

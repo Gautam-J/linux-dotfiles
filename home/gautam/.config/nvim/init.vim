@@ -43,7 +43,7 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:airline_theme='minimalist'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '.git$\|models$\|data$\|__pycache__$\|node_modules$\|DS_Store$',
+  \ 'dir':  '.git$\|models$\|data$\|__pycache__$\|node_modules$\|.ipynb_checkpoints$\|.pytest_cache$\|DS_Store$',
   \ 'file': '\v\.(png|jpg|jpeg|gif|pdf)'
   \ }
 let g:ctrlp_use_caching=0
