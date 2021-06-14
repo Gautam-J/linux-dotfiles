@@ -31,7 +31,7 @@ export TESSDATA_PREFIX='/home/gautam/Coding/Tesseract'
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export VISUAL=nvim
 export EDITOR=nvim
-export TERM=xterm
+export TERM=xterm-256color
 export FLASK_DEBUG=1
 
 # Add to path
