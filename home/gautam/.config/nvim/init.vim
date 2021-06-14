@@ -15,10 +15,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
-Plug 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'  " prolly remove this
 Plug 'jiangmiao/auto-pairs'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'romainl/vim-cool'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " prolly remove this
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'yggdroot/indentLine'
@@ -41,7 +40,8 @@ filetype indent on
 
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
-let g:airline_theme='minimalist'
+let g:airline_powerline_fonts=1
+let g:airline_theme='gruvbox'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '.git$\|models$\|data$\|__pycache__$\|node_modules$\|.ipynb_checkpoints$\|.pytest_cache$\|DS_Store$',
   \ 'file': '\v\.(png|jpg|jpeg|gif|pdf)'
@@ -57,7 +57,7 @@ let NERDTreeShowHidden=1
 
 set nocompatible
 set t_Co=256
-set notermguicolors
+set termguicolors
 set clipboard+=unnamedplus
 set noshowmode
 set updatetime=50
@@ -73,13 +73,12 @@ set autoindent
 set scrolloff=5
 set colorcolumn=80
 set encoding=utf-8
-set scrolloff=3
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 set whichwrap+=<,>,h,l
 set ignorecase
 set smartcase
-set hlsearch
+set nohlsearch
 set incsearch
 set magic
 set showmatch
@@ -97,6 +96,9 @@ set splitbelow
 set splitright
 set conceallevel=2
 set bg=dark
+set signcolumn=yes
+set cmdheight=1
+set shortmess+=c
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
