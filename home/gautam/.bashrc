@@ -5,16 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# git aware prompt (git branch)
-gb() {
-        echo -n '(' && git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n ')'
-}
-
-git_branch() {
-        gb | sed 's/()//'
-}
-
-PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\] \$(git_branch)\$ "
+source ~/.fancy-prompt.sh
 
 # Add color output
 alias ls='ls --color=auto'
