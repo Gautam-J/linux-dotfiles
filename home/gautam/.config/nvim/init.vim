@@ -17,7 +17,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
-Plug 'yggdroot/indentLine'
 Plug 'mxw/vim-jsx'
 Plug 'norcalli/nvim-colorizer.lua'
 
@@ -41,8 +40,6 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
 let g:NERDSpaceDelims=1
-let g:indentLine_setConceal=2
-let g:indentLine_concealcursor=""
 let g:python3_host_prog='/home/gautam/miniconda3/bin/python3'
 let mapleader=" "
 let NERDTreeShowHidden=1
@@ -93,6 +90,8 @@ set bg=dark
 set signcolumn=yes
 set cmdheight=1
 set shortmess+=c
+set conceallevel=0
+set concealcursor=""
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
