@@ -17,11 +17,12 @@ alias ip='ip --color=auto'
 alias cp="cp -i"
 alias df='df -h'
 alias du="du -h"
+alias free='free -h'
 alias r='ranger'
-alias free='free -m'
-alias vim='nvim'
+alias v='nvim'
+alias py='python'
 alias vpn="sudo protonvpn"
-alias editvim="vim ~/.config/nvim/init.vim"
+alias editvim="nvim ~/.config/nvim/init.vim"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 alias listenvs="conda info --envs"
 
