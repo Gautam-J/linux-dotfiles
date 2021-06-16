@@ -8,17 +8,14 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
-Plug 'mxw/vim-jsx'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'junegunn/goyo.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -42,7 +39,9 @@ let g:airline_theme='gruvbox'
 let g:NERDSpaceDelims=1
 let g:python3_host_prog='/home/gautam/miniconda3/bin/python3'
 let mapleader=" "
-let NERDTreeShowHidden=1
+let g:netrw_liststyle=3
+let g:netrw_browse_split=4
+let g:netrw_banner=0
 
 set nocompatible
 set t_Co=256
@@ -92,6 +91,13 @@ set cmdheight=1
 set shortmess+=c
 set conceallevel=0
 set concealcursor=""
+set path+=**
+set wildmode=longest,list,full
+set wildmenu
+set wildignore+=**/node_modules/*
+set wildignore+=**/.git/*
+set wildignore+=**/.ipynb_checkpoints/*
+set wildignore+=**/__pycache__/*
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -109,26 +115,37 @@ nnoremap <silent> <c-j> :wincmd j<CR>
 nnoremap <silent> <c-h> :wincmd h<CR>
 nnoremap <silent> <c-l> :wincmd l<CR>
 
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 
-vnoremap <leader>p "_dP
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>Y gg"+yG
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+nnoremap <leader>c "_c
+vnoremap <leader>c "_c
+
+vnoremap <leader>p "_dP
 
 nnoremap <C-x> :set rnu!<CR>
 vnoremap < <gv
 vnoremap > >gv
 
 nnoremap <leader>u :UndotreeToggle<CR>
-nmap <Leader>k :NERDTreeToggle<CR>
+nmap <Leader>k :Lex <bar> :vertical resize 30<CR>
 
 nmap <silent> <Leader>GD :Gdiff<CR>
 nmap <Leader>gs :G<CR>
 nnoremap <Leader>gc :Gcommit<CR>
+
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+nnoremap <Leader>rp :resize 100<CR>
+
+nnoremap <Leader>s :Goyo<CR>
 
 " nnoremap <Leader>S :CocSearch<space>
 
@@ -146,6 +163,11 @@ autocmd BufWritePre * :call TrimWhitespace()
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+augroup AutoDeleteNetrwHiddenBuffers
+  au!
+  au FileType netrw setlocal bufhidden=wipe
+augroup end
 
 " function! s:check_back_space() abort
   " let col = col('.') - 1
