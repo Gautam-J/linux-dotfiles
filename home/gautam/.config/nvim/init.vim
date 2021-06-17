@@ -8,6 +8,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -137,7 +138,7 @@ nmap <Leader>k :Lex <bar> :vertical resize 30<CR>
 
 nmap <silent> <Leader>GD :Gdiff<CR>
 nmap <Leader>gs :G<CR>
-nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gc :Git commit<CR>
 
 nnoremap <Up> :resize +2<CR>
 nnoremap <Down> :resize -2<CR>
@@ -161,7 +162,7 @@ autocmd filetype python nnoremap <Leader>r :w <bar> exec '!python '.shellescape(
 autocmd BufWritePre * :call TrimWhitespace()
 
 " Use tab for trigger completion with characters ahead and navigate.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 augroup AutoDeleteNetrwHiddenBuffers
