@@ -40,7 +40,6 @@ font-0 = monospace:size=12;3
 
 modules-left = i3
 modules-right = xbacklight pulseaudio cpu memory network battery temperature date
-
 tray-position = right
 
 [module/i3]
@@ -132,11 +131,19 @@ battery = BAT0
 adapter = AC0
 time-format = %H:%M
 
-format-charging = <label-charging>
+format-charging = <ramp-capacity> <label-charging>
 label-charging = CH %percentage%% %time%
+label-charging-margin-right=1
 
-format-discharging = <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = DC %percentage%% %time%
+label-discharging-margin-right=1
+
+ramp-capacity-0 = %{Bf2201f}
+ramp-capacity-1 = %{B#171614}
+ramp-capacity-2 = %{B#171614}
+ramp-capacity-3 = %{B#171614}
+ramp-capacity-4 = %{B#171614}
 
 format-full = <label-full>
 label-full = FULL %percentage%%
