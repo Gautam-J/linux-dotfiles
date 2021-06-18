@@ -1,3 +1,4 @@
+; TODO: add icons for modules
 [colors]
 base00 = #171614
 base01 = #32302F
@@ -11,7 +12,7 @@ base08 = #fa3e25
 base09 = #FE8625
 base0A = #fac423
 base0B = #6abf4b
-base0C = #8ba59b
+base0C = #5aa689
 base0D = #017991
 base0E = #8f386d
 base0F = #A87322
@@ -37,6 +38,9 @@ module-margin-left = 1
 module-margin-right = 1
 
 font-0 = monospace:size=12;3
+font-1 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=14;4
+font-2 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=12;4
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=12;4
 
 modules-left = i3
 modules-right = xbacklight pulseaudio cpu memory network battery temperature date
@@ -48,51 +52,68 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+ws-icon-default = 
+
 label-mode = %mode%
 label-mode-padding = 1
 label-mode-foreground = ${colors.base00}
 label-mode-background = ${colors.base0A}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %index% %icon%
 label-focused-padding = 1
 label-focused-foreground = ${colors.base00}
 label-focused-background = ${colors.base0D}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %index% %icon%
 label-unfocused-padding = 1
 label-unfocused-foreground = ${colors.base05}
 label-unfocused-background = ${colors.base01}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %index% %icon%
 label-visible-padding = 1
 label-visible-foreground = ${colors.base05}
 label-visible-background = ${colors.base01}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %index% %icon%
 label-urgent-padding = 1
 label-urgent-foreground = ${colors.base00}
 label-urgent-background = ${colors.base08}
 
 [module/xbacklight]
 type = internal/xbacklight
+enable-scroll = false
+
 format = <label>
-label = BR %percentage%%
+label =  %percentage%%
 
 [module/cpu]
 type = internal/cpu
 interval = 1
 format = <label>
-label = CPU %percentage%%
+label =  %percentage%%
 
 [module/memory]
 type = internal/memory
-interval = 3
+interval = 1
 format = <label>
-label = MEM %percentage_used%%
+label =  %percentage_used%%
 
 [module/network]
 type = internal/network
@@ -100,10 +121,10 @@ interface = wlo1
 interval = 3.0
 
 format-connected = <label-connected>
-label-connected = WIFI %essid%
+label-connected =  %essid%
 
 format-disconnected = <label-disconnected>
-label-disconnected = NO WIFI
+label-disconnected = NO NETWORK
 
 [module/date]
 type = internal/date
@@ -113,15 +134,15 @@ date = %Y-%m-%d %a%
 time = %H:%M
 
 format = <label>
-label = %date% %time%
+label =  %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 interval = 5
 
 format-volume = <label-volume>
-label-volume = VOL %percentage%%
-label-muted = MUTED
+label-volume =  %percentage%%
+label-muted =  MUTED
 
 click-right = pavucontrol
 
@@ -130,35 +151,43 @@ type = internal/battery
 battery = BAT0
 adapter = AC0
 time-format = %H:%M
+full-at = 99
 
-format-charging = <ramp-capacity> <label-charging>
-label-charging = CH %percentage%% %time%
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%% %time%
 label-charging-margin-right=1
 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 500
+
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = DC %percentage%% %time%
+label-discharging = %percentage%% %time%
 label-discharging-margin-right=1
 
-ramp-capacity-0 = %{Bf2201f}
-ramp-capacity-1 = %{B#171614}
-ramp-capacity-2 = %{B#171614}
-ramp-capacity-3 = %{B#171614}
-ramp-capacity-4 = %{B#171614}
+ramp-capacity-0 = %{Bf2201f}
+ramp-capacity-1 = %{B#171614}
+ramp-capacity-2 = %{B#171614}
+ramp-capacity-3 = %{B#171614}
+ramp-capacity-4 = %{B#171614}
 
 format-full = <label-full>
-label-full = FULL %percentage%%
+label-full =  FULL
 
 [module/temperature]
 type = internal/temperature
 interval = 1
 thermal-zone = 0
-warn-temperature = 80
+warn-temperature = 70
 
 format = <label>
-format-warn = <label-warn>
+label =  %temperature-c%
 
-label = TEMP %temperature-c%
-label-warn = TEMP %temperature-c%
+format-warn = <label-warn>
+label-warn =  %temperature-c%
 
 [settings]
 screenchange-reload = true
