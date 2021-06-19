@@ -17,6 +17,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'junegunn/goyo.vim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -32,17 +34,17 @@ highlight ColorColumn ctermbg=236
 filetype plugin on
 filetype indent on
 
+let mapleader=" "
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
-let g:NERDSpaceDelims=1
 let g:python3_host_prog='/home/gautam/miniconda3/bin/python3'
-let mapleader=" "
 let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_banner=0
+let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 
 set nocompatible
 set t_Co=256
@@ -95,10 +97,12 @@ set concealcursor=""
 set path+=**
 set wildmode=longest,list,full
 set wildmenu
+set wildignore+=*.pyc
 set wildignore+=**/node_modules/*
 set wildignore+=**/.git/*
 set wildignore+=**/.ipynb_checkpoints/*
 set wildignore+=**/__pycache__/*
+set completeopt=menuone,noselect
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -110,6 +114,27 @@ if &term =~ '^screen'
 endif
 
 lua require 'plug-colorizer'
+
+" lua require('lspconfig').pyright.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').pyls.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').vimls.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').bashls.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').clangd.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').cssls.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').html.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require('lspconfig').tailwindcss.setup{ on_attach=require'completion'.on_attach }
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+" nnoremap <leader>vrn <cmd>lua vim.lsp.buf.rename()<CR>
+" nnoremap <leader>vca <cmd>lua vim.lsp.buf.code_action()<CR>
 
 nnoremap <silent> <c-k> :wincmd k<CR>
 nnoremap <silent> <c-j> :wincmd j<CR>
@@ -136,7 +161,7 @@ vnoremap > >gv
 nnoremap <leader>u :UndotreeToggle<CR>
 nmap <Leader>k :Lex <bar> :vertical resize 30<CR>
 
-nmap <silent> <Leader>GD :Gdiff<CR>
+nmap <silent> <Leader>gd :Gdiff<CR>
 nmap <Leader>gs :G<CR>
 nnoremap <Leader>gc :Git commit<CR>
 
@@ -149,17 +174,14 @@ nnoremap <Leader>rp :resize 100<CR>
 nnoremap <Leader>s :Goyo<CR>
 
 " nnoremap <Leader>S :CocSearch<space>
-
 " nnoremap <Leader>; :CtrlP<CR>
-" nmap <silent> <Leader>gd <Plug>(coc-definition)
-" nmap <silent> <Leader>gy <Plug>(coc-type-definition)
-" nmap <silent> <Leader>gi <Plug>(coc-implementation)
-" nmap <silent> <Leader>gr <Plug>(coc-references)
 
 autocmd filetype cpp nnoremap <Leader>r :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype c nnoremap <Leader>r :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype python nnoremap <Leader>r :w <bar> exec '!python '.shellescape('%')<CR>
+
 autocmd BufWritePre * :call TrimWhitespace()
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -176,11 +198,11 @@ augroup end
 " endfunction
 
 " Use <c-space> to trigger completion.
-" if has('nvim')
-  " inoremap <silent><expr> <c-space> coc#refresh()
-" else
-  " inoremap <silent><expr> <c-@> coc#refresh()
-" endif
+if has('nvim')
+  inoremap <silent><expr> <c-space> "\<C-n>"
+else
+  inoremap <silent><expr> <c-@> "\<C-n>"
+endif
 
 " Helper function to show documentation
 " function! s:show_documentation()

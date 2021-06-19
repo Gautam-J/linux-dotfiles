@@ -19,10 +19,10 @@ alias df='df -h'
 alias du="du -h"
 alias free='free -h'
 alias r='ranger'
-alias v='nvim'
+alias v='~/Coding/squashfs-root/usr/bin/nvim'
 alias py='python'
 alias vpn="sudo protonvpn"
-alias editvim="nvim ~/.config/nvim/init.vim"
+alias editvim="v ~/.config/nvim/init.vim"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 alias listenvs="conda info --envs"
 
