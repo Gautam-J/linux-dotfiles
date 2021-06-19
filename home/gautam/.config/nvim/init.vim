@@ -146,7 +146,7 @@ if &term =~ '^screen'
 endif
 
 lua require 'plug-colorizer'
-lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
+" lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
 
 " lua require('lspconfig').pyright.setup{}
 lua require('lspconfig').pyls.setup{}
@@ -162,7 +162,7 @@ lua << EOF
 require('telescope').setup{
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
-        prompt_prefix = ' >',
+        prompt_prefix = ' > ',
         color_devicons = true,
         file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
         grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
@@ -186,6 +186,7 @@ nnoremap <leader>vn <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
 nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
+
 nnoremap <leader>ps :lua require('telescope.builtin').live_grep()<CR>
 nnoremap <leader>pw :lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })<CR><CR>
 nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
