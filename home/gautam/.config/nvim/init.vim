@@ -18,7 +18,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
+" Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 " Initialize plugin system
 call plug#end()
@@ -45,6 +52,31 @@ let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_banner=0
 let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
+
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.tags = v:true
+let g:compe.source.snippets_nvim = v:true
+let g:compe.source.treesitter = v:true
 
 set nocompatible
 set t_Co=256
@@ -114,27 +146,50 @@ if &term =~ '^screen'
 endif
 
 lua require 'plug-colorizer'
+lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
 
-" lua require('lspconfig').pyright.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').pyls.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').vimls.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').bashls.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').clangd.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').cssls.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').html.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require('lspconfig').tailwindcss.setup{ on_attach=require'completion'.on_attach }
+" lua require('lspconfig').pyright.setup{}
+lua require('lspconfig').pyls.setup{}
+lua require('lspconfig').vimls.setup{}
+lua require('lspconfig').bashls.setup{}
+lua require('lspconfig').clangd.setup{}
+lua require('lspconfig').cssls.setup{}
+lua require('lspconfig').html.setup{}
+lua require('lspconfig').tsserver.setup{}
+lua require('lspconfig').tailwindcss.setup{}
+
+lua << EOF
+require('telescope').setup{
+    defaults = {
+        file_sorter = require('telescope.sorters').get_fzy_sorter,
+        prompt_prefix = ' >',
+        color_devicons = true,
+        file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
+        grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
+        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new
+    },
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true
+        }
+    }
+}
+EOF
 
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-" nnoremap <leader>vrn <cmd>lua vim.lsp.buf.rename()<CR>
-" nnoremap <leader>vca <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>vn <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>ps :lua require('telescope.builtin').live_grep()<CR>
+nnoremap <leader>pw :lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })<CR><CR>
+nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 
 nnoremap <silent> <c-k> :wincmd k<CR>
 nnoremap <silent> <c-j> :wincmd j<CR>
@@ -173,14 +228,13 @@ nnoremap <Leader>rp :resize 100<CR>
 
 nnoremap <Leader>s :Goyo<CR>
 
-" nnoremap <Leader>S :CocSearch<space>
-" nnoremap <Leader>; :CtrlP<CR>
-
 autocmd filetype cpp nnoremap <Leader>r :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype c nnoremap <Leader>r :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype python nnoremap <Leader>r :w <bar> exec '!python '.shellescape('%')<CR>
 
 autocmd BufWritePre * :call TrimWhitespace()
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -192,26 +246,12 @@ augroup AutoDeleteNetrwHiddenBuffers
   au FileType netrw setlocal bufhidden=wipe
 augroup end
 
-" function! s:check_back_space() abort
-  " let col = col('.') - 1
-  " return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> "\<C-n>"
 else
   inoremap <silent><expr> <c-@> "\<C-n>"
 endif
-
-" Helper function to show documentation
-" function! s:show_documentation()
-  " if (index(['vim','help'], &filetype) >= 0)
-    " execute 'h '.expand('<cword>')
-  " else
-    " call CocAction('doHover')
-  " endif
-" endfunction
 
 function! TrimWhitespace()
     let l:save = winsaveview()
