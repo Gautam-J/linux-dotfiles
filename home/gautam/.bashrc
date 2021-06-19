@@ -5,7 +5,17 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source ~/.fancy-prompt.sh
+# git aware prompt (git branch)
+gb() {
+        echo -n '(' && git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n ')'
+}
+
+git_branch() {
+        gb | sed 's/()//'
+}
+
+PS1="[\[\033[01;32m\]\u@\h\[\033[00m\]] \[\033[01;34m\]\W\[\033[00m\] \$(git_branch)\$ "
+# source ~/.fancy-prompt.sh
 
 # Add color output
 alias ls='ls --color=auto'
@@ -25,9 +35,6 @@ alias vpn="sudo protonvpn"
 alias editvim="v ~/.config/nvim/init.vim"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 alias listenvs="conda info --envs"
-
-# add the below line to .gitconfig
-# alias glog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
