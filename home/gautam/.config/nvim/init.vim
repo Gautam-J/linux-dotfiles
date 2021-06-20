@@ -144,7 +144,7 @@ if &term =~ '^screen'
 endif
 
 lua require 'plug-colorizer'
-" lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
+lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
 
 lua require('lspconfig').pyls.setup{}
 lua require('lspconfig').vimls.setup{}
@@ -154,6 +154,7 @@ lua require('lspconfig').cssls.setup{}
 lua require('lspconfig').html.setup{}
 lua require('lspconfig').tsserver.setup{}
 lua require('lspconfig').tailwindcss.setup{}
+lua require('lspconfig').jsonls.setup{}
 
 lua << EOF
 require('telescope').setup{
