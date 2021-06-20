@@ -19,8 +19,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-Plug 'hrsh7th/vim-vsnip'
-" Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -52,7 +50,6 @@ let g:python3_host_prog='/home/gautam/miniconda3/bin/python3'
 let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_banner=0
-let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 
 let g:compe = {}
 let g:compe.enabled = v:true
@@ -149,7 +146,6 @@ endif
 lua require 'plug-colorizer'
 " lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
 
-" lua require('lspconfig').pyright.setup{}
 lua require('lspconfig').pyls.setup{}
 lua require('lspconfig').vimls.setup{}
 lua require('lspconfig').bashls.setup{}
@@ -176,6 +172,8 @@ require('telescope').setup{
         }
     }
 }
+
+require('telescope').load_extension('fzy_native')
 EOF
 
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -184,6 +182,7 @@ nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <leader>vn <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <leader>vca <cmd>lua vim.lsp.buf.code_action()<CR>
 
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
 nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
@@ -229,6 +228,9 @@ nnoremap <Right> :vertical resize -2<CR>
 nnoremap <Leader>rp :resize 100<CR>
 
 nnoremap <Leader>s :Goyo<CR>
+
+nnoremap <silent> Q <nop>
+inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
 autocmd filetype cpp nnoremap <Leader>r :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype c nnoremap <Leader>r :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
