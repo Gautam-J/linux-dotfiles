@@ -18,7 +18,7 @@ PS1="[\[\033[01;32m\]\u@\h\[\033[00m\]] \[\033[01;34m\]\W\[\033[00m\] \$(git_bra
 # source ~/.fancy-prompt.sh
 
 # enable vi mode
-set -o vi
+# set -o vi
 
 # Add color output
 alias ls='ls --color=auto'
