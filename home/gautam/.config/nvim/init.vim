@@ -19,6 +19,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -146,16 +147,6 @@ endif
 lua require 'plug-colorizer'
 lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
 
-lua require('lspconfig').pyls.setup{}
-lua require('lspconfig').vimls.setup{}
-lua require('lspconfig').bashls.setup{}
-lua require('lspconfig').clangd.setup{}
-lua require('lspconfig').cssls.setup{}
-lua require('lspconfig').html.setup{}
-lua require('lspconfig').tsserver.setup{}
-lua require('lspconfig').tailwindcss.setup{}
-lua require('lspconfig').jsonls.setup{}
-
 lua << EOF
 require('telescope').setup{
     defaults = {
@@ -175,6 +166,69 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzy_native')
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
+require('lspconfig').pyls.setup{ capabilities=capabilities }
+require('lspconfig').vimls.setup{ capabilities=capabilities }
+require('lspconfig').bashls.setup{ capabilities=capabilities }
+require('lspconfig').clangd.setup{ capabilities=capabilities }
+require('lspconfig').cssls.setup{ capabilities=capabilities }
+require('lspconfig').html.setup{ capabilities=capabilities }
+require('lspconfig').tsserver.setup{ capabilities=capabilities }
+require('lspconfig').tailwindcss.setup{ capabilities=capabilities }
+require('lspconfig').jsonls.setup{ capabilities=capabilities }
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
 
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -243,8 +297,8 @@ autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
 " Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 augroup AutoDeleteNetrwHiddenBuffers
   au!
