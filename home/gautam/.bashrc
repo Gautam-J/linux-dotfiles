@@ -21,16 +21,23 @@ PS1="[\[\033[01;32m\]\u@\h\[\033[00m\]] \[\033[01;34m\]\W\[\033[00m\] \$(git_bra
 # set -o vi
 
 # Add color output
-alias ls='ls --color=auto'
+alias ls='ls -lFh --color=auto'
 alias grep='grep --colour=auto'
 alias diff='diff --color=auto'
 alias ip='ip --color=auto'
 
 # Useful aliases
-alias cp="cp -i"
+alias cp="cp -aiv"
+alias mv="mv -iv"
+alias rm="rm -riv"
+alias mkdir="mkdir -pv"
 alias df='df -h'
 alias du="du -h"
+alias dud="du -d 1"
+alias ducd="du -s"
 alias free='free -h'
+alias fd="find . -type d -name"
+alias ff="find . -type f -name"
 alias r='ranger'
 alias v='~/Coding/squashfs-root/usr/bin/nvim'
 alias py='python'
@@ -38,6 +45,7 @@ alias vpn="sudo protonvpn"
 alias editvim="v ~/.config/nvim/init.vim"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 alias listenvs="conda info --envs"
+alias G="| grep"
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
