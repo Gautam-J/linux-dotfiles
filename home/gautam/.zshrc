@@ -74,7 +74,6 @@ plugins=(
     git
     zsh-autosuggestions
     colored-man-pages
-    virtualenv
     web-search
     zsh-syntax-highlighting  # must be the last plugin
 )
@@ -123,14 +122,14 @@ source $ZSH/oh-my-zsh.sh
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Add color output
-alias ls='ls -lFh --color=auto'
+# Useful aliases
 alias grep='grep --colour=auto'
 alias diff='diff --color=auto'
 alias ip='ip --color=auto'
-
-# Useful aliases
+alias ls='ls -lFh --color=auto'
+alias ls.='ls -d .*'
 alias cp="cp -aiv"
+alias cd..='cd ..'
 alias mv="mv -iv"
 alias rm="rm -riv"
 alias mkdir="mkdir -pv"
@@ -148,7 +147,16 @@ alias vpn="sudo protonvpn"
 alias editvim="v ~/.config/nvim/init.vim"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 alias listenvs="conda info --envs"
-alias G="| grep"
+alias ports='netstat -tulanp'
+alias wget='wget -c'
+alias -g G='| grep'
+alias t='tmux'
+alias ta='t a'
+alias tk='t kill-server'
+alias tns='t new -s'
+alias tas='t attach -t'
+alias tks='t kill-session -t'
+alias tls='t ls'
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
