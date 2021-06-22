@@ -46,7 +46,7 @@ let mapleader=" "
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection='0'
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled=1
 let g:airline_theme='gruvbox'
 let g:python3_host_prog='/home/gautam/miniconda3/bin/python3'
 let g:netrw_liststyle=3
@@ -296,10 +296,6 @@ autocmd BufWritePre * :call TrimWhitespace()
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-
-" Use tab for trigger completion with characters ahead and navigate.
-" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 augroup AutoDeleteNetrwHiddenBuffers
   au!

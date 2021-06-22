@@ -76,6 +76,7 @@ plugins=(
     colored-man-pages
     virtualenv
     web-search
+    zsh-syntax-highlighting  # must be the last plugin
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -107,6 +108,20 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # ---------------------------CUSTOM CONFIGURATION------------------------------
+
+# ~/.oh-my-zsh/themes/robbyrussell.zsh-theme
+#
+# PROMPT="%{$fg_bold[green]%}%n@%m %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+# PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+
+# ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+# ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+# ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+
+# enable edit to vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # Add color output
 alias ls='ls -lFh --color=auto'
