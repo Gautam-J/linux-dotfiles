@@ -293,4 +293,4 @@ for_window [class="Thunar" instance="Thunar"] floating enable
 gaps inner 5
 
 # gaps between screen border
-gaps outer 7
+gaps outer 5
