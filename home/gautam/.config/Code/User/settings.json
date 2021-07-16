@@ -4,12 +4,9 @@
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Material Theme Darker High Contrast",
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "editor.fontSize": 16,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -65,5 +62,6 @@
   "explorer.compactFolders": false,
   "jupyter.alwaysTrustNotebooks": true,
   "markdown.extension.toc.updateOnSave": false,
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "editor.inlineSuggest.enabled": true
 }
