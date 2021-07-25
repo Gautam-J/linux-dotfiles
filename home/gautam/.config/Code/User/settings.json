@@ -5,7 +5,7 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook"
   },
   "editor.fontSize": 16,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -53,7 +53,6 @@
   "autoDocstring.docstringFormat": "numpy",
   "autoDocstring.startOnNewLine": false,
   "python.showStartPage": false,
-  "python.defaultInterpreterPath": "~/miniconda3/bin/python",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
@@ -63,5 +62,9 @@
   "jupyter.alwaysTrustNotebooks": true,
   "markdown.extension.toc.updateOnSave": false,
   "window.zoomLevel": 1,
-  "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  }
 }
