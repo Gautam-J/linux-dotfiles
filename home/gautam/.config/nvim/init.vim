@@ -241,8 +241,8 @@ nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <leader>vn <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <leader>vca <cmd>lua vim.lsp.buf.code_action()<CR>
 
-nnoremap <C-p> :lua require('telescope.builtin').find_files()<CR>
-
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <Leader>pf :lua require('telescope.builtin').find_files({ hidden = true })<CR>
 nnoremap <leader>ps :lua require('telescope.builtin').live_grep()<CR>
 nnoremap <leader>pw :lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })<CR><CR>
 nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
@@ -265,6 +265,10 @@ nnoremap <leader>c "_c
 vnoremap <leader>c "_c
 
 vnoremap <leader>p "_dP
+
+nnoremap Y y$
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 nnoremap <C-x> :set rnu!<CR>
 vnoremap < <gv
