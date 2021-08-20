@@ -110,8 +110,13 @@ source $ZSH/oh-my-zsh.sh
 
 # custom function for cp
 function ncp () {
-    cp src/template.cpp src/${1}.cpp
-    nvim src/${1}.cpp
+    if [ -f "src/${1}.cpp" ]; then
+        echo "${1}.cpp file exists!" 1>&2
+        return 1
+    else
+        cp src/template.cpp src/${1}.cpp
+        nvim src/${1}.cpp
+    fi
 }
 
 # enable edit to vim
