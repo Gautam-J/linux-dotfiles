@@ -108,6 +108,12 @@ source $ZSH/oh-my-zsh.sh
 
 # ---------------------------CUSTOM CONFIGURATION------------------------------
 
+# custom function for cp
+function ncp () {
+    cp src/template.cpp src/${1}.cpp
+    nvim src/${1}.cpp
+}
+
 # enable edit to vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
@@ -148,6 +154,7 @@ alias tas='t attach -t'
 alias tks='t kill-session -t'
 alias tls='t ls'
 alias tnw='t neww -n'
+alias myip="curl http://ipecho.net/plain; echo"
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
