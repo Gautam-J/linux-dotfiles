@@ -161,6 +161,7 @@ alias tls='t ls'
 alias tnw='t neww -n'
 alias myip="curl http://ipecho.net/plain; echo"
 alias nt="cat > testCases"
+alias cr="find . -name '*.cpp' -exec awk 'NR==1&&/^$/{print FILENAME}' {} \;"
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
