@@ -274,10 +274,10 @@ exec_always --no-startup-id unclutter -idle 1 &
 exec --no-startup-id redshift
 
 # autostart spotify
-exec --no-startup-id spotify
+# exec --no-startup-id spotify
 
 # autostart discord
-exec --no-startup-id discord
+# exec --no-startup-id discord
 
 # Low battery notification
 exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10
