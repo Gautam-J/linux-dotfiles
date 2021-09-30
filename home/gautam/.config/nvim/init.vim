@@ -297,6 +297,11 @@ autocmd filetype cpp nnoremap <Leader>r :!nfn=$(echo % \| sed "s/src\///g" \| se
 autocmd filetype c nnoremap <Leader>r :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype python nnoremap <Leader>r :w <bar> exec '!python '.shellescape('%')<CR>
 
+autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 autocmd BufWritePre * :call TrimWhitespace()
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
