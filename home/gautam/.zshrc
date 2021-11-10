@@ -71,7 +71,6 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
     zsh-autosuggestions
     colored-man-pages
     web-search
@@ -145,23 +144,38 @@ alias r='ranger'
 alias v='nvim'
 alias py='python'
 alias vpn="sudo protonvpn"
-alias editvim="v ~/.config/nvim/init.vim"
+alias editvim="nvim ~/.config/nvim/init.vim"
+alias editzsh="nvim ~/.zshrc"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 alias listenvs="conda info --envs"
 alias ports='netstat -tulanp'
 alias wget='wget -c'
-alias -g G='| grep'
-alias t='tmux'
-alias ta='t a'
-alias tk='t kill-server'
-alias tns='t new -s'
-alias tas='t attach -t'
-alias tks='t kill-session -t'
-alias tls='t ls'
-alias tnw='t neww -n'
 alias myip="curl http://ipecho.net/plain; echo"
+alias -g G='| grep'
+
+# Tmux
+alias t='tmux'
+alias tk='tmux kill-server'
+alias tns='tmux new -s'
+alias tks='tmux kill-session -t'
+alias ta='tmux attach'
+alias tas='tmux attach -t'
+alias tls='tmux ls'
+alias tnw='tmux neww -n'
+
+# CP
 alias nt="cat > testCases"
 alias cr="find . -name '*.cpp' -exec awk 'NR==1&&/^$/{print FILENAME}' {} \;"
+
+# Git
+alias g="git"
+alias glog="git glog"
+alias gss="git status"
+alias ga="git add"
+alias gaa="git add -A"
+alias gc="git commit"
+alias gp="git push"
+alias gpl="git pull"
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
