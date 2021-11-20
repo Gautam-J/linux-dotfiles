@@ -176,6 +176,7 @@ alias gaa="git add -A"
 alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
+alias gcl='git clone'
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
