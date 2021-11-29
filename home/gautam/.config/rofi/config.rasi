@@ -1,5 +1,9 @@
-configuration {
-	theme: "/usr/share/rofi/themes/gruvbox-dark-hard.rasi";
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+
+listview {
     lines: 10;
-    width: 30;
+}
+
+window {
+    width: 30%;
 }

@@ -17,16 +17,16 @@
     scrollbar: false;
 
     /* Gruvbox dark colors */
-    gruvbox-dark-bg0-hard:     #171614;
-    gruvbox-dark-bg0:          #32302f;
+    gruvbox-dark-bg0-hard:     #1d2021;
+    gruvbox-dark-bg0:          #282828;
     gruvbox-dark-bg2:          #504945;
-    gruvbox-dark-fg0:          #d9d4b6;
-    gruvbox-dark-fg1:          #ffffff;
-    gruvbox-dark-red-dark:     #f2201f;
-    gruvbox-dark-red-light:    #fa3e25;
-    gruvbox-dark-yellow-dark:  #fffd00;
-    gruvbox-dark-yellow-light: #fac423;
-    gruvbox-dark-gray:         #d9d4b6;
+    gruvbox-dark-fg0:          #fbf1c7;
+    gruvbox-dark-fg1:          #ebdbb2;
+    gruvbox-dark-red-dark:     #cc241d;
+    gruvbox-dark-red-light:    #fb4934;
+    gruvbox-dark-yellow-dark:  #d79921;
+    gruvbox-dark-yellow-light: #fabd2f;
+    gruvbox-dark-gray:         #a89984;
 
     /* Theme colors */
     background:                  @gruvbox-dark-bg0-hard;
