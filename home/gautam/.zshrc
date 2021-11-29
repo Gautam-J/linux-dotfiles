@@ -152,6 +152,7 @@ alias ports='netstat -tulanp'
 alias wget='wget -c'
 alias myip="curl http://ipecho.net/plain; echo"
 alias -g G='| grep'
+alias shred='shred -uvz'
 
 # Tmux
 alias t='tmux'
@@ -173,7 +174,7 @@ alias glog="git glog"
 alias gss="git status"
 alias ga="git add"
 alias gaa="git add -A"
-alias gc="git commit"
+alias gc="git commit -v"
 alias gp="git push"
 alias gpl="git pull"
 alias gcl='git clone'
