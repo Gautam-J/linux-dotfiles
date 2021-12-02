@@ -13,14 +13,18 @@ Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
-Plug 'tomasiser/vim-code-dark'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'airblade/vim-gitgutter'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -53,31 +57,6 @@ let g:python3_host_prog='/home/gautam/miniconda3/bin/python3'
 let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_banner=0
-
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.tags = v:true
-let g:compe.source.snippets_nvim = v:true
-let g:compe.source.treesitter = v:true
 
 set nocompatible
 set t_Co=256
@@ -135,7 +114,7 @@ set wildignore+=**/node_modules/*
 set wildignore+=**/.git/*
 set wildignore+=**/.ipynb_checkpoints/*
 set wildignore+=**/__pycache__/*
-set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -149,7 +128,100 @@ endif
 lua require 'plug-colorizer'
 lua require 'nvim-treesitter.configs'.setup{ highlight = { enable = true } }
 
-lua << EOF
+lua <<EOF
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
+
+  local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+  end
+
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      end,
+    },
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif vim.fn["vsnip#available"](1) == 1 then
+          feedkey("<Plug>(vsnip-expand-or-jump)", "")
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        end
+      end, { "i", "s" }),
+
+      ["<S-Tab>"] = cmp.mapping(function()
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+          feedkey("<Plug>(vsnip-jump-prev)", "")
+        end
+      end, { "i", "s" }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local lspconfig = require('lspconfig')
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+  local servers = {
+    'pyls',
+    'vimls',
+    'bashls',
+    'clangd',
+    'cssls',
+    'html',
+    'tsserver',
+    'tailwindcss',
+    'jsonls'
+  }
+
+  for _, lsp in ipairs(servers) do
+      lspconfig[lsp].setup{ capabilities=capabilities }
+  end
+
 require('telescope').setup{
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
@@ -168,69 +240,6 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzy_native')
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
-}
-
-require('lspconfig').pyls.setup{ capabilities=capabilities }
-require('lspconfig').vimls.setup{ capabilities=capabilities }
-require('lspconfig').bashls.setup{ capabilities=capabilities }
-require('lspconfig').clangd.setup{ capabilities=capabilities }
-require('lspconfig').cssls.setup{ capabilities=capabilities }
-require('lspconfig').html.setup{ capabilities=capabilities }
-require('lspconfig').tsserver.setup{ capabilities=capabilities }
-require('lspconfig').tailwindcss.setup{ capabilities=capabilities }
-require('lspconfig').jsonls.setup{ capabilities=capabilities }
-
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
-    return t "<S-Tab>"
-  end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
 
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -290,7 +299,6 @@ nnoremap <Leader>rp :resize 100<CR>
 nnoremap <Leader>s :Goyo<CR>
 
 nnoremap <silent> Q <nop>
-inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
 autocmd filetype cpp nnoremap <Leader>c :w <CR> :!nfn=$(echo % \| sed "s/src\///g" \| sed "s/.cpp//g") && g++ -std=c++17 -fsanitize=address -fsanitize=undefined -Wall -Wshadow -Wno-unused-result -D_GLIBCXX_DEBUG -O2 % -o ./bin/${nfn} && ./bin/${nfn} < testCases<CR>
 autocmd filetype cpp nnoremap <Leader>r :!nfn=$(echo % \| sed "s/src\///g" \| sed "s/.cpp//g") && ./bin/${nfn} < testCases<CR>
