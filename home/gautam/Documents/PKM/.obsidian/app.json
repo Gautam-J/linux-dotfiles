@@ -1,0 +1,8 @@
+{
+  "trashOption": "local",
+  "showLineNumber": true,
+  "vimMode": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "zettelkasten",
+  "attachmentFolderPath": "files"
+}
