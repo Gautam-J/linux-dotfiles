@@ -153,6 +153,7 @@ alias wget='wget -c'
 alias myip="curl http://ipecho.net/plain; echo"
 alias -g G='| grep'
 alias shred='shred -uvz'
+alias watchfile='tail -f'
 
 # Tmux
 alias t='tmux'
