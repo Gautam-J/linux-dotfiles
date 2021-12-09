@@ -1,10 +1,10 @@
-#!/usr/bin/env sh
+#!/usr/bin/bash
 
-ZK_PATH="~/Documents/PKM/"
+ZK_PATH="/home/gautam/Documents/PKM/"
 
 cd "$ZK_PATH"
 
-CHANGES_EXIST="$(git status --procelain | wc -l)"
+CHANGES_EXIST="$(git status --porcelain | wc -l)"
 
 if [ "$CHANGES_EXIST" -eq 0 ]; then
     exit 0
