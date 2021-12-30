@@ -300,8 +300,8 @@ nnoremap <Leader>s :Goyo<CR>
 
 nnoremap <silent> Q <nop>
 
-autocmd filetype cpp nnoremap <Leader>c :w <CR> :!nfn=$(echo % \| sed "s/src\///g" \| sed "s/.cpp//g") && g++ -std=c++17 -fsanitize=address -fsanitize=undefined -Wall -Wshadow -Wno-unused-result -D_GLIBCXX_DEBUG -O2 % -o ./bin/${nfn} && ./bin/${nfn} < testCases<CR>
-autocmd filetype cpp nnoremap <Leader>r :!nfn=$(echo % \| sed "s/src\///g" \| sed "s/.cpp//g") && ./bin/${nfn} < testCases<CR>
+autocmd filetype cpp nnoremap <Leader>c :w <CR> :!nfn=$(echo % \| sed "s/src\///g" \| sed "s/.cpp//g") && g++ -std=c++17 -fsanitize=address -fsanitize=undefined -Wall -Wshadow -Wno-unused-result -D_GLIBCXX_DEBUG -O2 % -o ./bin/${nfn}<CR>
+autocmd filetype cpp nnoremap <Leader>r :w <CR> :!nfn=$(echo % \| sed "s/src\///g" \| sed "s/.cpp//g") && ./bin/${nfn} < testCases<CR>
 autocmd filetype c nnoremap <Leader>r :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype python nnoremap <Leader>r :w <bar> exec '!python '.shellescape('%')<CR>
 

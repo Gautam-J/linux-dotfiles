@@ -70,3 +70,20 @@ class empty(Command):
 
     def execute(self):
         self.fm.run("gio trash --empty")
+
+
+class move_to_files(Command):
+    """:move_to_files
+
+    Moves the selected files to the Files directory in PKM.
+    Default location will be ~/Documents/PKM/Files
+    """
+
+    def execute(self):
+        import shutil
+
+        for file in self.fm.thistab.get_selection():
+            shutil.move(
+                file.path,
+                "/home/gautam/Documents/PKM/Files/" + file.basename
+            )

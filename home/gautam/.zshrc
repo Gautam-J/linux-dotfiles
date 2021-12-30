@@ -146,6 +146,7 @@ alias py='python'
 alias vpn="sudo protonvpn"
 alias editvim="nvim ~/.config/nvim/init.vim"
 alias editzsh="nvim ~/.zshrc"
+alias editi3="nvim ~/.config/i3/config"
 alias config='/usr/bin/git --git-dir=/home/gautam/dotfiles/ --work-tree=/'
 alias listenvs="conda info --envs"
 alias ports='netstat -tulanp'
@@ -154,6 +155,8 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias -g G='| grep'
 alias shred='shred -uvz'
 alias watchfile='tail -f'
+alias flash="sudo dd bs=4M status=progress oflag=sync"
+alias jpnb="jupyter notebook"
 
 # Tmux
 alias t='tmux'
@@ -180,6 +183,7 @@ alias gp="git push"
 alias gpl="git pull"
 alias gcl='git clone'
 alias gini="git init"
+alias gdif="git diff --minimal"
 
 # Environment variables
 export TF_FORCE_GPU_ALLOW_GROWTH=true
