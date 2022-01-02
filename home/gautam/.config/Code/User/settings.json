@@ -61,10 +61,11 @@
   "explorer.compactFolders": false,
   "jupyter.alwaysTrustNotebooks": true,
   "markdown.extension.toc.updateOnSave": false,
-  "window.zoomLevel": 1,
   "editor.inlineSuggest.enabled": true,
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
-  }
+  },
+  "bracketPairColorizer.depreciation-notice": false,
+  "window.zoomLevel": 1
 }
