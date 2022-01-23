@@ -3,7 +3,7 @@
   "workbench.settings.editor": "json",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },

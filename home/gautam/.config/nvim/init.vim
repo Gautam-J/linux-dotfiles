@@ -15,7 +15,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'junegunn/goyo.vim'
 Plug 'neovim/nvim-lspconfig'
@@ -307,6 +307,7 @@ autocmd filetype python nnoremap <Leader>r :w <bar> exec '!python '.shellescape(
 
 autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype typescriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 

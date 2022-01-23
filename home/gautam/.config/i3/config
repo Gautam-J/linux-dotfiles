@@ -161,7 +161,8 @@ for_window [class="discord"] move to workspace $ws9
 for_window [class="Whatsapp-for-linux"] move to workspace $ws8
 for_window [class="Postman"] move to workspace $ws7
 for_window [class="obsidian"] move to workspace $ws2
-for_window [class="notion-app-enhanced"] move to workspace $ws4
+for_window [class="ticktick-nativefier-a173fa"] move to workspace $ws4
+for_window [class="notion-app-enhanced"] move to workspace $ws5
 # for_window [class="kitty"] move to workspace $ws1
 # for_window [class="Google-chrome"] move to workspace $ws3
 
@@ -276,13 +277,13 @@ exec_always --no-startup-id unclutter -idle 1 &
 exec --no-startup-id redshift
 
 # autostart spotify
-# exec --no-startup-id spotify
+exec --no-startup-id spotify
 
 # autostart discord
-# exec --no-startup-id discord
+exec --no-startup-id discord
 
-# autostart notion
-exec --no-startup-id notion-app-enhanced
+# autostart ticktick
+# exec --no-startup-id ticktick
 
 # Low battery notification
 exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10
