@@ -157,6 +157,7 @@ alias shred='shred -uvz'
 alias watchfile='tail -f'
 alias flash="sudo dd bs=4M status=progress oflag=sync"
 alias jpnb="jupyter notebook"
+alias please="sudo !!"
 
 # Tmux
 alias t='tmux'
